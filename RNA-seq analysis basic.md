@@ -111,6 +111,7 @@ __Sort and convert the SAM files to BAM__
 
 __To be continued.__
 
+
 ###Reference:
 
 Pertea M, Kim D, Pertea GM, Leek JT, Salzberg SL. 2016. Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown. _Nat Protoc_ **11**: 1650-1667.
