@@ -1,3 +1,8 @@
 Here are some useful tutorials to learn Perl as a beginner.
 
 
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
