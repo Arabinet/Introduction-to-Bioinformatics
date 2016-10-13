@@ -15,6 +15,11 @@ Connect to the virtual machine. Using Xshell
 
 Software installation:
 
+```ruby
+abc
+
+```
+
 ```linux
 mkdir $HOME/bin
 export PATH=$HOME/bin:$PATH
