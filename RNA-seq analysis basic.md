@@ -6,12 +6,12 @@ Open an account at USTC cloud service, and set up a virtual machine as a server:
 
 http://cloud.ustc.edu.cn/
 
-Connect to the virtual machine using Xshell
+Connect to the virtual machine using [Xshell](http://scc.ustc.edu.cn/yhsq/dlrjxz/201303/t20130314_148192.html).
 
 ##2. Software installation.
 
 
-Onced connected, type the following commands in the [Xshell](http://scc.ustc.edu.cn/yhsq/dlrjxz/201303/t20130314_148192.html) console.
+Onced connected, type the following commands in the Xshell console.
 
 
 ```shell
