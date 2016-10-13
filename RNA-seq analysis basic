@@ -3,9 +3,9 @@ In this tutorial, we will learn how to do RNA-seq analysis using HISAT, StringTi
 
 Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown.
 
-1. Setup and virtual machine with Centos 6.5 system at the USTC cloud service.
+#1. Setup and virtual machine with Centos 6.5 system at the USTC cloud service.
 
-2. Software installation.
+#2. Software installation.
 
 Open an account at USTC cloud service, and set up a virtual machine as a server:
 
