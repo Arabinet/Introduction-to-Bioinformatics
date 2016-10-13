@@ -11,7 +11,7 @@ Connect to the virtual machine using Xshell
 ##2. Software installation.
 
 
-Onced connected, type the following commands in the Xshell console.
+Onced connected, type the following commands in the [Xshell](http://scc.ustc.edu.cn/yhsq/dlrjxz/201303/t20130314_148192.html) console.
 
 
 ```shell
