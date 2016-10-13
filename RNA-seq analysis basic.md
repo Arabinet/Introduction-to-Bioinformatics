@@ -1,9 +1,7 @@
-In this tutorial, we will learn how to do a basic RNA-seq analysis. We will first setup a linux server using cloud service provided by USTC. Then will follow a protocol provided by [Pertea et al (2016)](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html), which appeared at **_Nature Protocol_**:
-
-`RNA-seq analysis using HISAT, StringTie and Ballgown, using a protocol published in the following paper at Nature Protocol.`
+In this tutorial, we will learn how to conduct a basic RNA-seq data analysis. We will first setup a virtual machine with Centos 6.5 using the cloud service provided by USTC. Then we will follow a protocol provided by [Pertea et al (2016)](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html), which appeared at **_Nature Protocol_**:
 
 
-##1. Setup and virtual machine
+##1. Setup a virtual machine
 
 Open an account at USTC cloud service, and set up a virtual machine as a server:
 
@@ -13,7 +11,7 @@ Connect to the virtual machine using Xshell
 
 ##2. Software installation.
 
-```bash
+```shell
 mkdir $HOME/bin
 export PATH=$HOME/bin:$PATH
 sudo yum groupinstall 'Development Tools'
@@ -22,7 +20,7 @@ mkdir tools
 cd tools
 ```
 
-```linux
+```shell
 wget http://staff.ustc.edu.cn/~sma/bioinfo_tools/samtools-bcftools-htslib-1.0_x64-linux.tar.bz2
 tar –xjf samtools-bcftools-htslib-1.0_x64-linux.tar.bz2
 cp samtools-bcftools-htslib-1.0_x64-linux/bin/samtools ~/bin
@@ -69,4 +67,10 @@ tar xvzf chrX_data.tar.gz
 ```
 
 ##4. Analysis
+
+
+###Reference:
+
+Pertea M, Kim D, Pertea GM, Leek JT, Salzberg SL. 2016. Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown. _Nat Protoc_ **11**: 1650-1667.
+
 
