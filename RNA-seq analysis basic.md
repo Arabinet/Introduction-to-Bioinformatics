@@ -1,9 +1,9 @@
-In this tutorial, we will learn how to do RNA-seq analysis using HISAT, StringTie and Ballgown, using a protocol published in the following paper at Nature Protocol. 
+In this tutorial, we will learn how to do a basic RNA-seq analysis. We will first setup a linux server using cloud service provided by USTC. Then will follow a protocol provided by [Pertea et al (2016)](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html), which appeared at **_Nature Protocol_**:
+
+`RNA-seq analysis using HISAT, StringTie and Ballgown, using a protocol published in the following paper at Nature Protocol.`
 
 
-Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown.
-
-#1. Setup and virtual machine
+##1. Setup and virtual machine
 
 Open an account at USTC cloud service, and set up a virtual machine as a server:
 
@@ -11,7 +11,7 @@ http://cloud.ustc.edu.cn/
 
 Connect to the virtual machine using Xshell
 
-#2. Software installation.
+##2. Software installation.
 
 ```bash
 mkdir $HOME/bin
@@ -57,7 +57,7 @@ biocLite(c("alyssafrazee/RSkittleBrewer","ballgown", "genefilter","dplyr","devto
 q()
 ```
 
-Download and unzip the data
+##3. Download and unzip the data
 
 ```linux
 screen
@@ -68,11 +68,5 @@ wget ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz
 tar xvzf chrX_data.tar.gz
 ```
 
-
-
-
-
-3. Download the data files.
-
-4. Analysis
+##4. Analysis
 
