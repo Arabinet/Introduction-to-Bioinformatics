@@ -91,6 +91,8 @@ screen -r
 
 ##4. Analysis
 
+**Follow the [procedure section](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html#procedure) in the Nature Protocol paper.**
+
 __Map the reads to the genome.__
 ```bash
 hisat2 -p 2 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188044_chrX_1.fastq.gz -2 chrX_data/samples/ERR188044_chrX_2.fastq.gz -S ERR188044_chrX.sam
@@ -107,6 +109,8 @@ hisat2 -p 2 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188454_
 hisat2 -p 2 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR204916_chrX_1.fastq.gz -2 chrX_data/samples/ERR204916_chrX_2.fastq.gz -S ERR204916_chrX.sam
 ```
 __Sort and convert the SAM files to BAM__
+
+__To be continued.__
 
 ###Reference:
 
