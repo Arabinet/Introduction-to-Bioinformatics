@@ -36,18 +36,27 @@ Next, we will setup two directory for bin (excutable programs) and tools (variou
 ```bash
 mkdir $HOME/bin
 export PATH=$HOME/bin:$PATH # This will let you run the programs in the bin from any other directories.
-cd ~
-mkdir tools
+
 ```
 
 We will download the pre-compiled Samtools, Hisat2, and Stringtie, unzip, and copy them into the bin directory.
 
 ```shell
-cd ~/tools
-wget http://staff.ustc.edu.cn/~******/bioinfo_tools/samtools-bcftools-htslib-1.0_x64-linux.tar.bz2
-tar –xjf samtools-bcftools-htslib-1.0_x64-linux.tar.bz2
-cp samtools-bcftools-htslib-1.0_x64-linux/bin/samtools ~/bin
 
+cd ~
+mkdir tools
+cd ~/tools
+
+wget https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2
+tar –xjf samtools-1.3.1.tar.bz2
+cd samtools-1.3.1
+./configure --without-curses
+make
+make install
+cp samtools ~/bin
+
+
+cd ~/tools
 wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.0.4-Linux_x86_64.zip
 unzip hisat2-2.0.4-Linux_x86_64.zip
 cp hisat2-2.0.4/hisat2* ~/bin
