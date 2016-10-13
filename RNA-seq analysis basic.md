@@ -11,17 +11,41 @@ Connect to the virtual machine using Xshell
 
 ##2. Software installation.
 
-```shell
-mkdir $HOME/bin
-export PATH=$HOME/bin:$PATH
-sudo yum groupinstall 'Development Tools'
-cd ~
-mkdir tools
-cd tools
-```
+
+Onced connected, type the following commands in the Xshell console.
+
 
 ```shell
-wget http://staff.ustc.edu.cn/~sma/bioinfo_tools/samtools-bcftools-htslib-1.0_x64-linux.tar.bz2
+sudo yum groupinstall 'Development Tools'
+sudo yum install openssl-devel
+sudo yum install libcurl-devel
+sudo yum install httr
+sudo yum install libxml2-devel
+sudo yum install R
+```
+**sudo** will grant the root previledge to install softwares in the root directory.
+This will install the system tools we need for the softwares we'll use. 
+
+
+```shell
+sudo yum install screen
+```
+**screen** is a tool to offers the ability to detach a long running process from a session and then attach it back at a later time. You should definitedly check it out. Here is a [tutorial](http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html) for it.
+
+
+Next, we will setup two directory for bin (excutable programs) and tools (various bioinformatic tools)
+```bash
+mkdir $HOME/bin
+export PATH=$HOME/bin:$PATH # This will let you run the programs in the bin from any other directories.
+cd ~
+mkdir tools
+```
+
+We will download the pre-compiled Samtools, Hisat2, and Stringtie, unzip, and copy them into the bin directory.
+
+```shell
+cd ~/tools
+wget http://staff.ustc.edu.cn/~******/bioinfo_tools/samtools-bcftools-htslib-1.0_x64-linux.tar.bz2
 tar –xjf samtools-bcftools-htslib-1.0_x64-linux.tar.bz2
 cp samtools-bcftools-htslib-1.0_x64-linux/bin/samtools ~/bin
 
@@ -34,20 +58,14 @@ wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.0.Linux_x86_64.tar.g
 tar xvfz stringtie-1.3.0.Linux_x86_64.tar.gz
 cp stringtie-1.3.0.Linux_x86_64/stringtie ~/bin
 ```
-```linux
-sudo yum install openssl-devel
-sudo yum install libcurl-devel
-sudo yum install httr
-sudo yum install libxml2-devel
-sudo yum install screen
-```
+Note the we use the "~" sign as a representation of the home directory. 
 
-Intall R packages
+
+Start R from the linux console and install the necessory R packages within the R console.
 
 ```linux
 sudo R
 ```
-
 ```R
 install.packages("devtools",repos="http://cran.us.r-project.org")
 source("http://www.bioconductor.org/biocLite.R")
@@ -64,6 +82,11 @@ mkdir my_rnaseq_exp
 cd my_rnaseq_exp
 wget ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz
 tar xvzf chrX_data.tar.gz
+```
+We can the detach from the screen by typing "Ctrl+A" and then "D". And we can attach to the screen again by typing 
+
+```bash
+screen -r
 ```
 
 ##4. Analysis
