@@ -1,0 +1,13 @@
+In this tutorial, we will learn how to do RNA-seq analysis using HISAT, StringTie and Ballgown, using a protocol published in the following paper at Nature Protocol. 
+
+
+Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown.
+
+1. Setup and virtual machine with Centos 6.5 system at the USTC cloud service.
+
+2. Software installation.
+
+3. Download the data files.
+
+4. Analysis
+
