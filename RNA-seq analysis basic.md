@@ -1,5 +1,4 @@
-In this tutorial, we will learn how to conduct a basic RNA-seq data analysis. We will first setup a virtual machine with Centos 6.5 using the cloud service provided by USTC. Then we will follow a protocol provided by [Pertea et al (2016)](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html) <a href="http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html" target="_blank">Pertea et al (2016)</a>, which appeared at **_Nature Protocol_**:
-
+In this tutorial, we will learn how to conduct a basic RNA-seq data analysis. We will first setup a virtual machine with Centos 6.5 using the cloud service provided by USTC. Then we will follow a protocol provided by <a href="http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html" target="_blank">Pertea et al (2016)</a>, which appeared at **_Nature Protocol_**:
 
 ##1. Setup a virtual machine
 
