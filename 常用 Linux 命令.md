@@ -1,3 +1,5 @@
+###改编自 http://scc.ustc.edu.cn/yhsq/sycjwt/
+
 ##查看目录下有哪些文件及文件内容的常用命令：ls、cat
 ###ls
 
