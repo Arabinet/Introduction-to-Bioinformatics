@@ -1,4 +1,4 @@
-Just start your graduate study and get exposed to a new research field? Have too many papers to read? Here is a tip. <B>Build a co-authorship network for the key researchers in a specific field.</B> Whit this network, you can easily find out the big names in the field. By following the big guys' papers, you can quickly learn what has, what is, and what will be going on in the field. 
+Just start your graduate study and get exposed to a new research field? Have too many papers to read? Here is a tip. <B>Build a co-authorship network for the key researchers in a specific field.</B> With this network, you can easily find out the big names in the field. By following the big guys' papers, you can quickly learn what has, what is, and what will be going on in the field. 
 
 ##1. Search and download a list of publications in your field of study
 
