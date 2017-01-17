@@ -4,11 +4,24 @@ Just start your graduate study and get exposed to a new research field? Have too
 
 Here we will use "maize" as a key word to query in the pubmed database. Save the resulted publication list by clicking "Send to", choosing "File" in the "MEDLINE" format, and creating the file.
 
+![alt text](https://github.com/Arabinet/Introduction-to-Bioinformatics/blob/master/files/pubmed_search_maize.png "PubMed")
+
 ##2. Download and install the VOSviewer software.
 
 from http://www.vosviewer.com/
 
 ##3. Create a co-authorship network using VOSviewer.
+
+![alt text](https://github.com/Arabinet/Introduction-to-Bioinformatics/blob/master/files/P1.png "Step 1")
+
+![alt text](https://github.com/Arabinet/Introduction-to-Bioinformatics/blob/master/files/P2.png "Step 2")
+
+![alt text](https://github.com/Arabinet/Introduction-to-Bioinformatics/blob/master/files/P3.png "Step 3")
+
+![alt text](https://github.com/Arabinet/Introduction-to-Bioinformatics/blob/master/files/P4.png "Step 4")
+
+![alt text](https://github.com/Arabinet/Introduction-to-Bioinformatics/blob/master/files/P5.png "Step 5")
+
 
 ##4. Find out the big names in the field.
 
