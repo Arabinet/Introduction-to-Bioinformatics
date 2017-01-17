@@ -27,7 +27,7 @@ from http://www.vosviewer.com/
 
 The big names in maize field are: Schnable, Walbot, Messing, Freeling, Buckler, Doebley, Bogorad, Scandalios, ... (Note: Chinese authors were omitted due to the similiarities among their names.)
 
-##5. Follow the important rearchers one by one, and read the abstract of their papers chronically. 
+##5. Follow the important rearchers one by one, and read the abstracts of their papers chronically. 
 
 For example, here is a list of paper by Schnable PS:
 
