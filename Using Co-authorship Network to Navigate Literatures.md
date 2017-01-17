@@ -1,4 +1,4 @@
-Just start your graduate study and get exposed to a new research field? Have too many papers to read? Here is a tip. <B>Build a co-authorship network for the key researchers in a specific field.</B> Whit this network, you can easily find out the big names in the filed. By following the big guys' papers, you can quickly learn what has, what is, and what will be going on in the field. 
+Just start your graduate study and get exposed to a new research field? Have too many papers to read? Here is a tip. <B>Build a co-authorship network for the key researchers in a specific field.</B> Whit this network, you can easily find out the big names in the field. By following the big guys' papers, you can quickly learn what has, what is, and what will be going on in the field. 
 
 ##1. Search and download a list of publications in your field of study
 
@@ -25,16 +25,11 @@ from http://www.vosviewer.com/
 
 ##4. Find out the big names in the field.
 
-The big names in maize field are: Schnable, Walbot, Messing, Freeling, Buckler, Doebley, Bogorad, Scandalios, ... (Note: Chinese authors were omitted due to the similiarities among their names.)
+The big names in maize field are: Schnable, Walbot, Messing, Freeling, Buckler, Doebley, Bogorad, Scandalios, ... (Note: Chinese authors were omitted due to the similarities among their names.)
 
-##5. Follow the important rearchers one by one, and read the abstracts of their papers chronically. 
+##5. Follow the important searchers one by one, and read the abstracts of their papers chronically. 
 
 For example, here is a list of paper by Schnable PS:
-
-
-
+.......
 
 ##6. Enjoy your own research.
-
-
-
