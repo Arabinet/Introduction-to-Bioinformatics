@@ -11,7 +11,7 @@ In this tutorial, we will learn how to conduct an RNA-seq data analysis for the 
 >- [StringTie](https://ccb.jhu.edu/software/stringtie/)
 >- [HTSeq](http://www-huber.embl.de/HTSeq/doc/overview.html)
 >- [NCBI SRA Toolkit](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software)
-
+>
 >**Note:** These softwares have been installed on our sever.
 
 
