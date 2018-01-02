@@ -7,7 +7,7 @@
 
 In this tutorial, we will learn how to conduct an RNA-seq data analysis for the model plant species *Arabidopsis thaliana*, using our lab server **Mercury**. We will use a protocol modified from [Pertea *et al.* (2016)](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html).
 
-# **1. Required software**
+## **1. Required software**
 >- [HiSat2](https://ccb.jhu.edu/software/hisat2/index.shtml)
 >- [StringTie](https://ccb.jhu.edu/software/stringtie/)
 >- [HTSeq](http://www-huber.embl.de/HTSeq/doc/overview.html)
@@ -16,14 +16,14 @@ In this tutorial, we will learn how to conduct an RNA-seq data analysis for the 
 >**Note:** These softwares have been installed on our sever.
 
 
-#**2. Overview of the analysis**
+## **2. Overview of the analysis**
 >- Build an index for the Arabidopsis genome
 >- Download and map the Arabidopsis RNA-Seq reads onto Arabidopsis genome
 >- Use StringTie and HTSeq to calculate the expression levels for each gene 
 
 >**Homework for the lab members:** Use [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html) or [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) to calculate deferentially expressed genes
 
-#**3. Build an index for the *Arabidopsis thaliana* genome**
+## **3. Build an index for the *Arabidopsis thaliana* genome**
 The HiSat2 program requires an index file for every species in order to do the mapping. Some pre-computed indexes can be downloaded from the program's [website](https://ccb.jhu.edu/software/hisat2/index.shtml). But for plants and many other species, one has to prepare the index files using HiSat2 program. We will build the index files for the Arabidopsis genome. We need these files to build the Arabidopsis genome index.
 
 >- The Arabidopsis genome sequences in FASTA format
@@ -74,7 +74,7 @@ Your should see the following files within the folder:
 >Arabidopsis_thaliana.TAIR10.34_ercc_tran.7.ht2
 >Arabidopsis_thaliana.TAIR10.34_ercc_tran.8.ht2
 >
-#**4. Download the RNA-Seq data files from NCBI SRA database**
+## **4. Download the RNA-Seq data files from NCBI SRA database**
 
 We will use [SRA toolkit](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc) to download the RNA-Seq data files. First add the directory  /home/shared/tools/sratoolkit.2.8.2-1-centos_linux64/bin to your PATH.
 ```bash
@@ -106,7 +106,7 @@ prefetch SRR1524946
 ls /home/shared/ncbi/public
 ```
 
-#**5. Mapping the files to the genome**
+## **5. Mapping the files to the genome**
 
 **Fastq-dump** will extract the FASTQ file from the downloaded SRA file. For single-end sequencing, it will generate one FASTQ file, and for paired-end sequencing it will generate two FASTQ files. The files of [PRJNA256121](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256121) were all produced by single-end sequencing. **hisat2** will map the RNA-Seq reads onto the Arabidopsis genome using the index files we just generated.
 ```bash
@@ -137,7 +137,7 @@ rm SRR1524935.sam
 
 Do the same operations for SRR1524938, SRR1524940, SRR1524941, SRR1524945, and SRR1524946.
 
-#**6. Quantify expressed genes and transcripts' abundance using StringTie**
+## **6. Quantify expressed genes and transcripts' abundance using StringTie**
 We are only interested in the known transcripts specified in the Arabidopsis GTF file.
 ```bash
 stringtie SRR1524935.bam -p 8 -G ~/arabidopsis/idx/Arabidopsis_thaliana.TAIR10.34.gtf -e -B -A SRR1524935.gene.txt -o ballgown/SRR1524935/SRR1524935.gtf
@@ -152,7 +152,7 @@ The resulted file SRR1524935.gene.txt contains the expression value for each gen
 
 Do the same operations for SRR1524938, SRR1524940, SRR1524941, SRR1524945, and SRR1524946.
 
-#**7. Quantify gene expression values using HTSeq**
+## **7. Quantify gene expression values using HTSeq**
 
 ```shell
 samtools view SRR1524935.bam | htseq-count -m union -s no - ~/arabidopsis/idx/Arabidopsis_thaliana.TAIR10.34.gtf > SRR1524935.gene.count.txt
@@ -160,11 +160,11 @@ samtools view SRR1524935.bam | htseq-count -m union -s no - ~/arabidopsis/idx/Ar
 Check the result file SRR1524935.gene.count.txt for the read counts for each gene. Do the same operation for SRR1524938, SRR1524940, SRR1524941, SRR1524945, and SRR1524946.
 
 
-##**Homework to do:** 
+### **Homework to do:** 
 > Calculate the deferentially expressed genes between the iron-deficiency samples and the control samples using [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html) or [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html).  These two programs use the gene count numbers as input, which were generated *via* the HTSeq program. You can also use the [ballgown](http://bioconductor.org/packages/release/bioc/html/ballgown.html) program to find out induced and repressed genes.
 
 
-##**References:**
+### **References:**
 
 Li W, Lin WD, Ray P, Lan P, Schmidt W: Genome-wide detection of condition-sensitive alternative splicing in Arabidopsis roots. *Plant Physiol* 2013, **162**:1750-1763.
 
