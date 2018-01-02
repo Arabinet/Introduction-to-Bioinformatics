@@ -1,4 +1,4 @@
-renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} className="track-horizontal"/>}
+
 
 ### 改编自 http://scc.ustc.edu.cn/yhsq/sycjwt/
 
@@ -6,7 +6,7 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
 ## 查看目录下有哪些文件及文件内容的常用命令：ls、cat
 ### ls
 
-    用于显示列出（list）当前目录下或指定目录下存在的所有文件。ls最常用的参数有三个：-a、-l、指定目录，参数可混合使用。
+   用于显示列出（list）当前目录下或指定目录下存在的所有文件。ls最常用的参数有三个：-a、-l、指定目录，参数可混合使用。
 
     ls -a
         Linux上的文件以“.”开头的文件被系统视为隐藏文件，仅用ls命令是看不到它们的，而用ls -a除了显示一般文件名外，连隐藏文件也会显示出来。超算中心用户经常需要操作的隐藏文件是~/.bashrc文件，用于设定使用程序的环境变量。
@@ -17,7 +17,7 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
 
 ### cat
 
-    cat是concatenate的简写，它的功能是显示或连结一般的ascii文本文件。cat会将文件里的内容全部显示出来。当文件内容过多，一个屏幕显示不全时，可使用类似功能的操作命令，head、less、more、tail等，区别是它们每次仅显示部分内容。它的用法如下：
+   cat是concatenate的简写，它的功能是显示或连结一般的ascii文本文件。cat会将文件里的内容全部显示出来。当文件内容过多，一个屏幕显示不全时，可使用类似功能的操作命令，head、less、more、tail等，区别是它们每次仅显示部分内容。它的用法如下：
 
     cat text
         显示text这个文件里的内容。
@@ -32,7 +32,7 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
 
 ## 对文件进行编辑修改的常用命令：vi
 
-    类似的编辑修改文件命令还有：nano、vim、emacs等，请参考自学。
+   类似的编辑修改文件命令还有：nano、vim、emacs等，请参考自学。
     vi共分为3个模式，即一般模式（默认的模式）、编辑模式、命令行模式。3种模式的作用分别如下：
 
     一般模式：
@@ -77,25 +77,25 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
 
 ## 对文件进行重命名、移动、新建删除、拷贝操作：mv、touch、mkdir、rm、cp、scp
 
-    重命名、移动命令：mv
+   重命名、移动命令：mv
         重命名文件可以理解为对原文件进行移动，保存成另一个名称的新文件，并将原文件删除。移动文件则可以将文件移动到当前目录下，或指定的其他目录下。用法举例：
     
-    新建删除命令：touch、mkdir、rm
+   新建删除命令：touch、mkdir、rm
         新建普通文件命令：touch，也可以用cat、vi等命令完成；
         新建目录命令：mkdir，即make directory的意思。
         删除文件命令：rm，即remove的意思。执行此命令需要小心，彻底删除后的文件将无法恢复。
  
-    拷贝命令：cp、scp
+   拷贝命令：cp、scp
         拷贝命令cp，即copy的意思，用于复制一个文件在当前目录下或指定的另一个目录下。
         scp命令用于跨节点或远程服务器之间的拷贝操作。
         
 ## 对文件进行压缩与解压缩操作：gzip、bzip2、tar   
 
-    文件打包压缩常用的命令有：
+   文件打包压缩常用的命令有：
 
-    gzip
+   gzip
     
-    用gzip新建的压缩文件为*.gz的文件名，默认的状态下原本的文件被压缩为.gz的文件名，原文件就不存在了。使用方法：gzip [-cdtv#] 文件名
+   用gzip新建的压缩文件为*.gz的文件名，默认的状态下原本的文件被压缩为.gz的文件名，原文件就不存在了。使用方法：gzip [-cdtv#] 文件名
 
     -c
         将压缩过程中产生的数据输出到屏幕上，可通过数据流重定向来处理。
@@ -108,7 +108,7 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
     -#
         压缩登记，-1最快，但压缩比差，-9最慢，压缩比好。默认是-6。
 
-    bzip2
+   bzip2
     
     用bzip2新建的压缩文件为.bz2的文件名，当压缩文件的名称为.bz、.bz2、.tbz、.tbz2等时，可用bzip2来解压缩。使用方法：bzip2 [-cdkzv#] 文件名
 
@@ -125,7 +125,7 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
     -#
         与gzip相同，计算压缩比的参数，-9最佳，-1最快 
 
-    tar
+   tar
     
     tar命令的参数很多，常用的使用方式如下：tar [-j|-z] [cv] [-f 新建的文件名] filename 或 tar [-j|-z] [xv] [-f 新建的文件名] [-C 目录名]
 
@@ -148,8 +148,8 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
 
 ## 不同目录切换的常用命令：cd
 
-    首先要清楚自己当前所在的目录，获取当前目录的命令：pwd：
-    不同目录间切换命令：cd，常用参数介绍如下：
+   首先要清楚自己当前所在的目录，获取当前目录的命令：pwd：
+   不同目录间切换命令：cd，常用参数介绍如下：
 
     cd abc/def
         从当前目录切换到当前目录下的子目录abc/def目录下。
@@ -162,9 +162,9 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
         
 ## 查找文件常用命令：find
         
-    find命令的一般形式为；find pathname -options [-print -exec -ok ...]，参数含义：
+   find命令的一般形式为；find pathname -options [-print -exec -ok ...]，参数含义:
 
-        pathname
+      pathname
             find命令所查找的目录路径。例如用.来表示当前目录，用/来表示系统根目录。
         -print
             find命令将匹配的文件输出到标准输出。
@@ -173,7 +173,7 @@ renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} classN
         -ok
             和-exec的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。:
 
-        使用方法举例如下：
+      使用方法举例如下：
 
         find . -name "*.txt" -print
             用于查找所有的‘ *.txt’文件在当前目录及子目录中；
