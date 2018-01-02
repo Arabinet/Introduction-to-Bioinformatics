@@ -1,3 +1,5 @@
+renderTrackHorizontal={props => <div {...props} style={{display: 'none'}} className="track-horizontal"/>}
+
 ### 改编自 http://scc.ustc.edu.cn/yhsq/sycjwt/
 
 
