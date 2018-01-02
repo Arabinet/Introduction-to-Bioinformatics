@@ -1,6 +1,5 @@
 
-
-#**RNA-Seq analysis for *Arabidopsis thaliana***
+# **RNA-Seq analysis for *Arabidopsis thaliana***
 
 *by Ma Lab*
 
