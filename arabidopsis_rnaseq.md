@@ -7,7 +7,7 @@
 
 In this tutorial, we will learn how to conduct an RNA-seq data analysis for the model plant species *Arabidopsis thaliana*, using our lab server **Mercury**. We will use a protocol modified from [Pertea *et al.* (2016)](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html).
 
-#**1. Required software**
+#1. Required software
 >- [HiSat2](https://ccb.jhu.edu/software/hisat2/index.shtml)
 - [StringTie](https://ccb.jhu.edu/software/stringtie/)
 - [HTSeq](http://www-huber.embl.de/HTSeq/doc/overview.html)
