@@ -1,0 +1,249 @@
+<h3 id="rna-seq-analysis-for-arabidopsis-thaliana"><strong>RNA-Seq analysis for <em>Arabidopsis thaliana</em></strong></h3>
+
+<p><em>by Ma Lab</em></p>
+
+<p>In this tutorial, we will learn how to conduct an RNA-seq data analysis for the model plant species <em>Arabidopsis thaliana</em>, using our lab server <strong>Mercury</strong>. We will use a protocol modified from <a href="http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html">Pertea <em>et al.</em> (2016)</a>.</p>
+
+
+
+<h4 id="1-required-software"><strong>1. Required software</strong></h4>
+
+<blockquote>
+  <ul>
+  <li><a href="https://ccb.jhu.edu/software/hisat2/index.shtml">HiSat2</a></li>
+  <li><a href="https://ccb.jhu.edu/software/stringtie/">StringTie</a></li>
+  <li><a href="http://www-huber.embl.de/HTSeq/doc/overview.html">HTSeq</a></li>
+  <li><a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software">NCBI SRA Toolkit</a></li>
+  </ul>
+  
+  <p><strong>Note:</strong> These softwares have been installed on our sever.</p>
+</blockquote>
+
+
+
+<h4 id="2-overview-of-the-analysis"><strong>2. Overview of the analysis</strong></h4>
+
+<blockquote>
+  <ul>
+  <li>Build an index for the Arabidopsis genome</li>
+  <li>Download and map the Arabidopsis RNA-Seq reads onto Arabidopsis genome</li>
+  <li>Use StringTie and HTSeq to calculate the expression levels for each gene </li>
+  </ul>
+  
+  <p><strong>Homework for the lab members:</strong> Use <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">edgeR</a> or <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a> to calculate deferentially expressed genes</p>
+</blockquote>
+
+
+
+<h4 id="3-build-an-index-for-the-arabidopsis-thaliana-genome"><strong>3. Build an index for the <em>Arabidopsis thaliana</em> genome</strong></h4>
+
+<p>The HiSat2 program requires an index file for every species in order to do the mapping. Some pre-computed indexes can be downloaded from the program’s <a href="https://ccb.jhu.edu/software/hisat2/index.shtml">website</a>. But for plants and many other species, one has to prepare the index files using HiSat2 program. We will build the index files for the Arabidopsis genome. We need these files to build the Arabidopsis genome index.</p>
+
+<blockquote>
+  <ul>
+  <li>The Arabidopsis genome sequences in FASTA format</li>
+  <li>A <a href="http://asia.ensembl.org/info/website/upload/gff.html">GTF</a> file specifying the gene models</li>
+  </ul>
+  
+  <p><strong>Note:</strong> These files will be downloaded from the <a href="http://plants.ensembl.org/index.html">Ensembl Plants</a> database.</p>
+</blockquote>
+
+<p>Log into the <strong>Mercury</strong> server, download the the files from Ensembl Plants, and build the genome index. </p>
+
+
+
+<pre class="prettyprint"><code class="language-bash hljs "><span class="hljs-built_in">cd</span> ~
+<span class="hljs-comment"># Make the arabidopsis/idx directory where the index files should be saved</span>
+mkdir arabidopsis
+mkdir arabidopsis/idx
+<span class="hljs-built_in">cd</span> arabidopsis/idx
+
+<span class="hljs-comment"># Download the genome sequences and GTF files from Ensembl</span>
+wget ftp://ftp.ensemblgenomes.org/pub/release-<span class="hljs-number">34</span>/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+wget ftp://ftp.ensemblgenomes.org/pub/release-<span class="hljs-number">34</span>/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.<span class="hljs-number">34</span>.gtf.gz
+
+<span class="hljs-comment"># Also copy the E coli sequences. There might be some contamination of e coli sequences during RNA-Seq library preparation. Incorporate these sequences into the index will make sure they will be removed during data analysis.</span>
+cp /home/shared/arabidopsis/ERCC* .
+gunzip Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+gunzip Arabidopsis_thaliana.TAIR10.<span class="hljs-number">34</span>.gtf.gz
+
+<span class="hljs-comment"># Append the e coli sequences and gtf to the Arabidopsis' ones.</span>
+cat Arabidopsis_thaliana.TAIR10.dna.toplevel.fa ERCC92.fa &gt;&gt; genome.fa
+cat Arabidopsis_thaliana.TAIR10.<span class="hljs-number">34</span>.gtf ERCC92.gtf &gt;&gt; genome.gtf
+
+<span class="hljs-comment"># Extract the exons and splice sites from the gtf file and use them to build the index. Check HiSat2 manual for more details.</span>
+python3.<span class="hljs-number">4</span> /home/shared/tools/hisat2-<span class="hljs-number">2.0</span>.<span class="hljs-number">4</span>/hisat2_extract_exons.py genome.gtf &gt; genome.exon
+python3.<span class="hljs-number">4</span> /home/shared/tools/hisat2-<span class="hljs-number">2.0</span>.<span class="hljs-number">4</span>/hisat2_extract_splice_sites.py genome.gtf &gt; genome.ss
+
+<span class="hljs-comment"># Build the genome index using hisat2-build</span>
+hisat2-build --exon genome.exon --ss genome.ss genome.fa Arabidopsis_thaliana.TAIR10.<span class="hljs-number">34</span>_ercc_tran
+
+<span class="hljs-comment"># Read the HiSat2 manual to find out why should we include the exons and splice sites information in the index.</span>
+
+<span class="hljs-comment"># Check the results</span>
+ls -lh</code></pre>
+
+<p>Your should see the following files within the folder:</p>
+
+<blockquote>
+  <p>Arabidopsis_thaliana.TAIR10.34_ercc_tran.1.ht2 <br>
+  Arabidopsis_thaliana.TAIR10.34_ercc_tran.2.ht2 <br>
+  Arabidopsis_thaliana.TAIR10.34_ercc_tran.3.ht2 <br>
+  Arabidopsis_thaliana.TAIR10.34_ercc_tran.4.ht2 <br>
+  Arabidopsis_thaliana.TAIR10.34_ercc_tran.5.ht2 <br>
+  Arabidopsis_thaliana.TAIR10.34_ercc_tran.6.ht2 <br>
+  Arabidopsis_thaliana.TAIR10.34_ercc_tran.7.ht2 <br>
+  Arabidopsis_thaliana.TAIR10.34_ercc_tran.8.ht2</p>
+</blockquote>
+
+
+
+<h4 id="4-download-the-rna-seq-data-files-from-ncbi-sra-database"><strong>4. Download the RNA-Seq data files from NCBI SRA database</strong></h4>
+
+<p>We will use <a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc">SRA toolkit</a> to download the RNA-Seq data files. First add the directory  /home/shared/tools/sratoolkit.2.8.2-1-centos_linux64/bin to your PATH.</p>
+
+
+
+<pre class="prettyprint"><code class="language-bash hljs "><span class="hljs-keyword">export</span> PATH=<span class="hljs-variable">$PATH</span>:/home/shared/tools/sratoolkit.<span class="hljs-number">2.8</span>.<span class="hljs-number">2</span>-<span class="hljs-number">1</span>-centos_linux64/bin</code></pre>
+
+<p>We will use a dataset published by <a href="http://www.plantphysiol.org/content/162/3/1750.full">Lin <em>et al.</em> (2013)</a> for our analysis. The dataset, measuring Arabidopsis root’s transcriptome upon iron deficiency, were deposited at NCBI SRA database (under Bioproject <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256121">PRJNA256121</a>), which include the following samples:</p>
+
+<blockquote>
+  <table>
+<thead>
+<tr>
+  <th>SRA Run id #</th>
+  <th>Sample</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>SRR1524935</td>
+  <td>control root sample #1</td>
+</tr>
+<tr>
+  <td>SRR1524938</td>
+  <td>control root sample #2</td>
+</tr>
+<tr>
+  <td>SRR1524940</td>
+  <td>control root sample #3</td>
+</tr>
+<tr>
+  <td>SRR1524941</td>
+  <td>iron-deficiency root sample #1</td>
+</tr>
+<tr>
+  <td>SRR1524945</td>
+  <td>iron-deficiency root sample #2</td>
+</tr>
+<tr>
+  <td>SRR1524946</td>
+  <td>iron-deficiency root sample #3</td>
+</tr>
+</tbody></table>
+
+</blockquote>
+
+<p>Download the run files for all these SRAs <em>via</em> the <strong>prefetch</strong> command within the SRA toolkit. <strong>Note:</strong> The files just need to be downloaded once. One of the lab members can do this downloading step. Avoid several people download these files in the same time. </p>
+
+
+
+<pre class="prettyprint"><code class="language-bash hljs "><span class="hljs-comment"># Install the aspera software for fast downloading</span>
+/home/shared/tools/aspera-connect-<span class="hljs-number">3.6</span>.<span class="hljs-number">1.110647</span>-linux-<span class="hljs-number">64</span>.sh
+<span class="hljs-comment"># Download the data files for all the runs. </span>
+<span class="hljs-comment"># Files will be saved at /home/shared/ncbi/public/sra/</span>
+prefetch SRR1524935
+prefetch SRR1524938
+prefetch SRR1524940
+prefetch SRR1524941
+prefetch SRR1524945
+prefetch SRR1524946
+<span class="hljs-comment"># Check the downloaded files</span>
+ls /home/shared/ncbi/public</code></pre>
+
+
+
+<h4 id="5-mapping-the-files-to-the-genome"><strong>5. Mapping the files to the genome</strong></h4>
+
+<p><strong>Fastq-dump</strong> will extract the FASTQ file from the downloaded SRA file. For single-end sequencing, it will generate one FASTQ file, and for paired-end sequencing it will generate two FASTQ files. The files of <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256121">PRJNA256121</a> were all produced by single-end sequencing. <strong>hisat2</strong> will map the RNA-Seq reads onto the Arabidopsis genome using the index files we just generated.</p>
+
+
+
+<pre class="prettyprint"><code class="language-bash hljs "><span class="hljs-comment"># We will make a directory prjna256121 for the analysis.</span>
+<span class="hljs-built_in">cd</span> ~
+mkdir ~/arabidopsis/prjna256121
+<span class="hljs-built_in">cd</span> ~/arabidopsis/prjna256121
+fastq-dump --split-<span class="hljs-number">3</span> SRR1524935
+hisat2 -x ~/arabidopsis/idx/Arabidopsis_thaliana.TAIR10.<span class="hljs-number">34</span>_ercc_tran -p <span class="hljs-number">10</span> -U SRR1524935.fastq -S SRR1524935.sam
+ls -lh</code></pre>
+
+<p>Mapping statistics are shown below. The keys are <strong>reads</strong> (should be &gt;= 1000000) number and <strong>overall alignment rate</strong> (should be &gt;= 70%). </p>
+
+<blockquote>
+  <p>23067621 reads; of these: <br>
+       23067621 (100.00%) were unpaired; of these: <br>
+          658421 (2.85%) aligned 0 times <br>
+          18506106 (80.23%) aligned exactly 1 time <br>
+          3903094 (16.92%) aligned &gt;1 times <br>
+  97.15% overall alignment rate</p>
+</blockquote>
+
+<p>Sort and convert the mapping result sam file into bam file, using <strong>samtools</strong>.</p>
+
+
+
+<pre class="prettyprint"><code class="language-bash hljs ">samtools sort -@ <span class="hljs-number">8</span> -o SRR1524935.bam SRR1524935.sam
+<span class="hljs-comment"># Keep the bam file, and remove the fastq and sam files</span>
+rm SRR1524935.fastq
+rm SRR1524935.sam</code></pre>
+
+<p>Do the same operations for SRR1524938, SRR1524940, SRR1524941, SRR1524945, and SRR1524946.</p>
+
+
+
+<h4 id="6-quantify-expressed-genes-and-transcripts-abundance-using-stringtie"><strong>6. Quantify expressed genes and transcripts’ abundance using StringTie</strong></h4>
+
+<p>We are only interested in the known transcripts specified in the Arabidopsis GTF file.</p>
+
+
+
+<pre class="prettyprint"><code class="language-bash hljs ">stringtie SRR1524935.bam -p <span class="hljs-number">8</span> -G ~/arabidopsis/idx/Arabidopsis_thaliana.TAIR10.<span class="hljs-number">34</span>.gtf <span class="hljs-operator">-e</span> -B -A SRR1524935.gene.txt -o ballgown/SRR1524935/SRR1524935.gtf
+<span class="hljs-comment"># Check StringTie manual for the explanation of each parameter</span>
+cat SRR1524935.gene.txt | more</code></pre>
+
+<p>The resulted file SRR1524935.gene.txt contains the expression value for each gene, in the format of FPKM or TPM.</p>
+
+<blockquote>
+  <p><strong>FPKM:</strong> Fragments Per Kilobase Million <br>
+  <strong>TPM:</strong> Transcripts Per Kilobase Million</p>
+  
+  <p><strong>Note</strong>: see <a href="http://www.rna-seqblog.com/rpkm-fpkm-and-tpm-clearly-explained/">a comparison between FPKM and TPM</a>.</p>
+</blockquote>
+
+<p>Do the same operations for SRR1524938, SRR1524940, SRR1524941, SRR1524945, and SRR1524946.</p>
+
+
+
+<h4 id="7-quantify-gene-expression-values-using-htseq"><strong>7. Quantify gene expression values using HTSeq</strong></h4>
+
+
+
+<pre class="prettyprint"><code class="language-shell hljs avrasm">samtools view SRR1524935<span class="hljs-preprocessor">.bam</span> | htseq-count -m union -s no - ~/arabidopsis/idx/Arabidopsis_thaliana<span class="hljs-preprocessor">.TAIR</span>10<span class="hljs-number">.34</span><span class="hljs-preprocessor">.gtf</span> &gt; SRR1524935<span class="hljs-preprocessor">.gene</span><span class="hljs-preprocessor">.count</span><span class="hljs-preprocessor">.txt</span></code></pre>
+
+<p>Check the result file SRR1524935.gene.count.txt for the read counts for each gene. Do the same operation for SRR1524938, SRR1524940, SRR1524941, SRR1524945, and SRR1524946.</p>
+
+
+
+<h3 id="homework-to-do"><strong>Homework to do:</strong></h3>
+
+<blockquote>
+  <p>Calculate the deferentially expressed genes between the iron-deficiency samples and the control samples using <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">edgeR</a> or <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a>.  These two programs use the gene count numbers as input, which were generated <em>via</em> the HTSeq program. You can also use the <a href="http://bioconductor.org/packages/release/bioc/html/ballgown.html">ballgown</a> program to find out induced and repressed genes.</p>
+</blockquote>
+
+
+
+<h3 id="references"><strong>References:</strong></h3>
+
+<p>Li W, Lin WD, Ray P, Lan P, Schmidt W: Genome-wide detection of condition-sensitive alternative splicing in Arabidopsis roots. <em>Plant Physiol</em> 2013, <strong>162</strong>:1750-1763.</p>
+
+<p>Pertea M, Kim D, Pertea GM, Leek JT, Salzberg SL:  Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown. <em>Nat Protoc</em> 2016, <strong>11</strong>: 1650-1667.</p>
