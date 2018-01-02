@@ -7,19 +7,19 @@
 
 In this tutorial, we will learn how to conduct an RNA-seq data analysis for the model plant species *Arabidopsis thaliana*, using our lab server **Mercury**. We will use a protocol modified from [Pertea *et al.* (2016)](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html).
 
-#1. Required software
+# **1. Required software**
 >- [HiSat2](https://ccb.jhu.edu/software/hisat2/index.shtml)
-- [StringTie](https://ccb.jhu.edu/software/stringtie/)
-- [HTSeq](http://www-huber.embl.de/HTSeq/doc/overview.html)
-- [NCBI SRA Toolkit](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software)
+>- [StringTie](https://ccb.jhu.edu/software/stringtie/)
+>- [HTSeq](http://www-huber.embl.de/HTSeq/doc/overview.html)
+>- [NCBI SRA Toolkit](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software)
 
 >**Note:** These softwares have been installed on our sever.
 
 
 #**2. Overview of the analysis**
 >- Build an index for the Arabidopsis genome
-- Download and map the Arabidopsis RNA-Seq reads onto Arabidopsis genome
-- Use StringTie and HTSeq to calculate the expression levels for each gene 
+>- Download and map the Arabidopsis RNA-Seq reads onto Arabidopsis genome
+>- Use StringTie and HTSeq to calculate the expression levels for each gene 
 
 >**Homework for the lab members:** Use [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html) or [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) to calculate deferentially expressed genes
 
@@ -66,13 +66,13 @@ ls -lh
 ```
 Your should see the following files within the folder:
 >Arabidopsis_thaliana.TAIR10.34_ercc_tran.1.ht2
-Arabidopsis_thaliana.TAIR10.34_ercc_tran.2.ht2
-Arabidopsis_thaliana.TAIR10.34_ercc_tran.3.ht2
-Arabidopsis_thaliana.TAIR10.34_ercc_tran.4.ht2
-Arabidopsis_thaliana.TAIR10.34_ercc_tran.5.ht2
-Arabidopsis_thaliana.TAIR10.34_ercc_tran.6.ht2
-Arabidopsis_thaliana.TAIR10.34_ercc_tran.7.ht2
-Arabidopsis_thaliana.TAIR10.34_ercc_tran.8.ht2
+>Arabidopsis_thaliana.TAIR10.34_ercc_tran.2.ht2
+>Arabidopsis_thaliana.TAIR10.34_ercc_tran.3.ht2
+>Arabidopsis_thaliana.TAIR10.34_ercc_tran.4.ht2
+>Arabidopsis_thaliana.TAIR10.34_ercc_tran.5.ht2
+>Arabidopsis_thaliana.TAIR10.34_ercc_tran.6.ht2
+>Arabidopsis_thaliana.TAIR10.34_ercc_tran.7.ht2
+>Arabidopsis_thaliana.TAIR10.34_ercc_tran.8.ht2
 >
 #**4. Download the RNA-Seq data files from NCBI SRA database**
 
@@ -83,12 +83,12 @@ export PATH=$PATH:/home/shared/tools/sratoolkit.2.8.2-1-centos_linux64/bin
 We will use a dataset published by [Lin *et al.* (2013)](http://www.plantphysiol.org/content/162/3/1750.full) for our analysis. The dataset, measuring Arabidopsis root's transcriptome upon iron deficiency, were deposited at NCBI SRA database (under Bioproject [PRJNA256121](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256121)), which include the following samples:
 >SRA Run id # | Sample 
 >---------- | -----
- SRR1524935 | control root sample #1
- SRR1524938 | control root sample #2
- SRR1524940 | control root sample #3
- SRR1524941 |  iron-deficiency root sample #1
- SRR1524945 | iron-deficiency root sample #2
-SRR1524946 | iron-deficiency root sample #3
+> SRR1524935 | control root sample #1
+> SRR1524938 | control root sample #2
+> SRR1524940 | control root sample #3
+> SRR1524941 |  iron-deficiency root sample #1
+> SRR1524945 | iron-deficiency root sample #2
+> SRR1524946 | iron-deficiency root sample #3
 
 Download the run files for all these SRAs *via* the **prefetch** command within the SRA toolkit. **Note:** The files just need to be downloaded once. One of the lab members can do this downloading step. Avoid several people download these files in the same time. 
 ```bash
