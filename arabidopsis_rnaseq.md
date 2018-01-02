@@ -19,7 +19,7 @@ In this tutorial, we will learn how to conduct an RNA-seq data analysis for the 
 >- Build an index for the Arabidopsis genome
 >- Download and map the Arabidopsis RNA-Seq reads onto Arabidopsis genome
 >- Use StringTie and HTSeq to calculate the expression levels for each gene 
-
+>
 >**Homework for the lab members:** Use [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html) or [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) to calculate deferentially expressed genes
 
 ## **3. Build an index for the *Arabidopsis thaliana* genome**
